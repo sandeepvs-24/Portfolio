@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandeep — B.Tech IT Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f5;
+    --bg-alt: #f1efe6;
+    --text: #1e2119;
+    --text-muted: #61665b;
+    --accent: #3f6d52;
+    --accent-soft: #dfe8df;
+    --border: #e2ded1;
+    --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16180f;
+      --bg-alt: #1e2116;
+      --text: #ece9de;
+      --text-muted: #a3a894;
+      --accent: #8ec1a1;
+      --accent-soft: #263426;
+      --border: #2c2f22;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #16180f;
+    --bg-alt: #1e2116;
+    --text: #ece9de;
+    --text-muted: #a3a894;
+    --accent: #8ec1a1;
+    --accent-soft: #263426;
+    --border: #2c2f22;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg { max-width: 100%; display: block; }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-row {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-name {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    width: 38px;
+    height: 34px;
+    cursor: pointer;
+    color: var(--text);
+  }
+
+  .nav-toggle svg { margin: 0 auto; }
+
+  @media (max-width: 640px) {
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 0;
+      padding: 6px 28px 16px;
+      display: none;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-top: 1px solid var(--border); }
+    .nav-links a { display: block; padding: 12px 0; }
+    .nav-toggle { display: block; }
+  }
+
+  section { padding: 76px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  .kicker {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 1.02rem;
+    margin: 0 0 10px;
+  }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+
+  h2 { font-size: 1.7rem; margin-bottom: 28px; }
+
+  p { max-width: 62ch; }
+
+  .muted { color: var(--text-muted); }
+
+  /* ---------- Hero ---------- */
+  #home { padding-top: 96px; padding-bottom: 88px; }
+
+  .hero-name {
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    line-height: 1.05;
+  }
+
+  .hero-role {
+    margin-top: 14px;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+  }
+
+  .hero-intro {
+    margin-top: 22px;
+    font-size: 1.05rem;
+  }
+
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    font-size: 0.85rem;
+    padding: 6px 13px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+  }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 44px;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  .about-card {
+    border: 1px solid var(--border);
+    background: var(--bg-alt);
+    border-radius: 10px;
+    padding: 22px 24px;
+  }
+
+  .about-card dl { margin: 0; }
+  .about-card dt { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); margin-top: 16px; }
+  .about-card dt:first-child { margin-top: 0; }
+  .about-card dd { margin: 4px 0 0; font-size: 0.96rem; }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 34px;
+  }
+
+  @media (max-width: 640px) {
+    .skills-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  .skill-group h3 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .skill-group ul { list-style: none; margin: 0; padding: 0; }
+  .skill-group li {
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.98rem;
+  }
+  .skill-group li:first-of-type { border-top: none; }
+
+  .skills-note {
+    margin-top: 36px;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+  }
+
+  /* ---------- Projects ---------- */
+  .project {
+    border-top: 1px solid var(--border);
+    padding: 36px 0;
+  }
+  .project:first-of-type { padding-top: 0; border-top: none; }
+
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .project-title { font-size: 1.3rem; }
+
+  .project-tag {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .project-desc { margin-top: 10px; }
+
+  .spec-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .spec-cols { grid-template-columns: 1fr; }
+  }
+
+  .spec-block h4 {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+
+  .spec-block ul { margin: 0; padding-left: 18px; font-size: 0.94rem; color: var(--text-muted); }
+  .spec-block li { margin-bottom: 4px; }
+
+  .tag-row {
+    margin-top: 18px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 4px 11px;
+    border-radius: 5px;
+  }
+
+  /* ---------- Photography ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .frame span {
+    position: relative;
+    z-index: 1;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.92);
+    padding: 10px 12px;
+    font-weight: 500;
+  }
+
+  .frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.45), transparent 55%);
+  }
+
+  .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .gallery-note {
+    margin-top: 18px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Learning ---------- */
+  .learn-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .learn-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.94rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 14px;
+  }
+
+  .learn-item svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+
+  /* ---------- Personal ---------- */
+  .personal-note {
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* ---------- Contact / Footer ---------- */
+  #contact { padding-bottom: 60px; }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 22px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 0.94rem;
+    padding: 10px 18px;
+    border: 1px solid var(--text);
+    border-radius: 7px;
+    color: var(--text);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn:hover { background: var(--text); color: var(--bg); }
+
+  footer {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 30px 28px 50px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-row">
+    <a href="#home" class="nav-name">Sandeep</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#photography">Photography</a></li>
+      <li><a href="#learning">Learning</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <section id="home">
+    <p class="kicker">Hello, I'm</p>
+    <h1 class="hero-name">Sandeep</h1>
+    <p class="hero-role">B.Tech IT Student</p>
+    <p class="hero-intro">Interested in Software Development, AI &amp; Technology.<br>Building things, learning technology, and exploring AI one project at a time.</p>
+    <div class="hero-meta">
+      <span class="pill">Velammal Engineering College, Chennai</span>
+      <span class="pill">Still learning, still building</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div>
+        <p>I'm a B.Tech Information Technology student at Velammal Engineering College, Chennai, with an interest in software development, artificial intelligence, and full-stack development. I'd rather learn by building something and breaking it a few times than just read about it in a textbook.</p>
+        <p>Right now I'm focused on getting better at programming and development, and spending a fair bit of time exploring different AI tools and how they fit into real projects.</p>
+        <p class="muted">Goal: become a software engineer / full-stack developer, one project at a time — building useful applications and steadily getting stronger at problem-solving and modern tech along the way.</p>
+      </div>
+      <div class="about-card">
+        <dl>
+          <dt>Degree</dt>
+          <dd>B.Tech, Information Technology</dd>
+          <dt>College</dt>
+          <dd>Velammal Engineering College</dd>
+          <dt>Location</dt>
+          <dd>Chennai, Tamil Nadu</dd>
+          <dt>Focus areas</dt>
+          <dd>Software dev, AI, full-stack</dd>
+          <dt>Outside the code editor</dt>
+          <dd>Photography — landscapes &amp; nature</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <ul>
+          <li>C</li>
+          <li>C++</li>
+          <li>Python</li>
+          <li>Java (basics)</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Web</h3>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript (basics)</li>
+          <li>Full-stack — currently learning</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Other</h3>
+        <ul>
+          <li>Flutter &amp; Dart</li>
+          <li>SQL, MongoDB</li>
+          <li>Git &amp; GitHub</li>
+          <li>AI tools, basic ML concepts</li>
+        </ul>
+      </div>
+    </div>
+    <p class="skills-note">I'm still learning most of these — this list is where I'm at, not a finished skill set.</p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">CropSense AI</h3>
+        <span class="project-tag">Academic project · Flutter + hardware</span>
+      </div>
+      <p class="project-desc">An AI-based agriculture project built for early detection and management of crop diseases and pest infestations. It brings together agriculture monitoring, AI-based analysis, smart irrigation, sensors, and a Flutter mobile app — the kind of project where the hardware and software actually have to talk to each other.</p>
+      <p class="muted">My part was mainly the Flutter frontend and the backend/software side.</p>
+      <div class="spec-cols">
+        <div class="spec-block">
+          <h4>Hardware</h4>
+          <ul>
+            <li>Arduino UNO</li>
+            <li>Capacitive soil moisture sensor</li>
+            <li>DHT11 temperature &amp; humidity sensor</li>
+            <li>Relay + water pump</li>
+            <li>ESP-01</li>
+            <li>Solar power (planned improvement)</li>
+          </ul>
+        </div>
+        <div class="spec-block">
+          <h4>App features</h4>
+          <ul>
+            <li>Home dashboard</li>
+            <li>AI scan — disease &amp; pest detection</li>
+            <li>Treatment recommendations</li>
+            <li>Crop health info &amp; history</li>
+            <li>Sensor &amp; smart irrigation monitoring</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Flutter</span>
+        <span class="tag">Dart</span>
+        <span class="tag">AI/ML</span>
+        <span class="tag">IoT</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">Perfume Website</h3>
+        <span class="project-tag">Personal project · HTML &amp; CSS</span>
+      </div>
+      <p class="project-desc">A simple website built with just HTML and CSS while I was getting started with web development. Nothing fancy — a static layout for a fictional perfume brand — but it's where I first got comfortable with structuring pages and styling them from scratch.</p>
+      <div class="tag-row">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+  <section id="photography">
+    <h2>Photography</h2>
+    <p class="muted">When I'm not at a screen, I'm usually out with a camera pointed at something ordinary — light through leaves, rain on a window, the sky doing something it won't repeat. A few frames below, placeholders for now until I swap in the real ones.</p>
+    <div class="gallery" id="gallery"></div>
+    <p class="gallery-note">Placeholder tiles — swap the SVGs in the <code>#gallery</code> section for your own photos.</p>
+  </section>
+
+  <!-- LEARNING -->
+  <section id="learning">
+    <h2>Currently Learning</h2>
+    <div class="learn-list">
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Data Structures &amp; Algorithms</span>
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Python</span>
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Object-Oriented Programming</span>
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SQL &amp; Databases</span>
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full-Stack Development</span>
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>AI &amp; AI Tools</span>
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Flutter</span>
+      <span class="learn-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Building practical projects</span>
+    </div>
+  </section>
+
+  <!-- PERSONAL -->
+  <section id="personal">
+    <h2>Off the clock</h2>
+    <p class="personal-note">I like understanding how things work, then trying to build something myself — whether that's a piece of code or just figuring out the right angle for a photo before the light changes. Tech and photography end up scratching the same itch: notice something, then go make it.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="muted">Feel free to reach out if you want to talk about a project, tech, or photography.</p>
+    <!-- Add GitHub / LinkedIn buttons here once you have the links, e.g.:
+    <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+    -->
+    <div class="contact-row">
+      <a class="btn" href="mailto:youremail@example.com">Email me</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>Sandeep — B.Tech IT, Velammal Engineering College</span>
+  <span>Built and still being tinkered with.</span>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', false);
+  }));
+
+  // Theme toggle (persists per viewer for this session)
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  try {
+    const saved = localStorage.getItem('portfolio-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('portfolio-theme', next); } catch (e) {}
+  });
+
+  // Photography placeholder gallery — simple CSS/SVG tiles, easy to swap for real photos
+  const shots = [
+    { label: 'Sunset', from: '#e8a24d', to: '#7a3b2e' },
+    { label: 'Rain', from: '#6b8494', to: '#2c3a44' },
+    { label: 'Greenery', from: '#7fa66a', to: '#2f4a2a' },
+    { label: 'Flowers', from: '#e08fa0', to: '#5a3040' },
+    { label: 'Sunrise', from: '#f2c14e', to: '#a15a3a' },
+    { label: 'Landscape', from: '#8fa5b8', to: '#33424f' },
+  ];
+  const gallery = document.getElementById('gallery');
+  shots.forEach(s => {
+    const frame = document.createElement('div');
+    frame.className = 'frame';
+    frame.innerHTML = `
+      <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="g-${s.label}" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="${s.from}"/>
+            <stop offset="100%" stop-color="${s.to}"/>
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" fill="url(#g-${s.label})"/>
+      </svg>
+      <span>${s.label}</span>
+    `;
+    gallery.appendChild(frame);
+  });
+</script>
+
+</body>
+</html>
